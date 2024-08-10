@@ -15,6 +15,7 @@
     <ProjectReference Include="..\Corent.Base\Corent.Base.csproj" />
     <ProjectReference Include="..\Corent.Contracts\Corent.Contracts.csproj" />
     <ProjectReference Include="..\Corent.Domain\Corent.Domain.csproj" />
+    <ProjectReference Include="..\Corent.Logic\Corent.Logic.csproj" />
   </ItemGroup>
 
 </Project>

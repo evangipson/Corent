@@ -1,4 +1,6 @@
-﻿using Corent.Base.Attributes;
+﻿using Microsoft.Extensions.Logging;
+
+using Corent.Base.Attributes;
 using Corent.Contracts.Services;
 using Corent.Domain.Models;
 
@@ -6,8 +8,15 @@ namespace Corent.Logic.Services
 {
     /// <inheritdoc cref="IWalletService"/>
     [Service(typeof(IWalletService))]
-    public class WalletService : IWalletService
+    public class WalletService(ILogger<WalletService> logger) : IWalletService
     {
+        private readonly ILogger<WalletService> _logger = logger;
+
+        public void Run()
+        {
+            _logger.LogInformation($"{nameof(Run)}: Wallet microservice started.");
+        }
+
         public Task<bool> TryTransfer(Wallet sender, Wallet receiver)
         {
             // TODO: broadcast message when transfer is successful

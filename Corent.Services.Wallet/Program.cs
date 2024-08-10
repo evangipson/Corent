@@ -4,33 +4,31 @@ using Microsoft.Extensions.Logging;
 
 using Corent.Base.Extensions;
 using Corent.Contracts.Services;
-using Corent.Wallet.Console.Controllers;
+using Corent.Logic.Services;
 
-namespace Corent.Wallet.Console
+namespace Corent.Services.Wallet
 {
     internal class Program
     {
         /// <summary>
-        /// The main entry point for the Corent Wallet
-        /// console application.
+        /// The main entry point for the Corrent Wallet microservice.
         /// </summary>
         private static void Main()
         {
-            System.Console.Title = "Corent Wallet Console Application";
+            Console.Title = "Corent Wallet Microservice";
 
             // setup our DI
             var serviceCollection = new ServiceCollection().AddLogging(cfg => cfg.AddConsole());
 
             // add Corent services using reflection
-            serviceCollection.AddServicesFromAssembly(Assembly.GetAssembly(typeof(IMicroservice)));
-            serviceCollection.AddServicesFromAssembly(Assembly.GetAssembly(typeof(ApplicationController)));
+            serviceCollection.AddServicesFromAssembly(Assembly.GetAssembly(typeof(WalletService)));
 
             // instantiate depenedency injection concrete object
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
-            // start the application by getting the Application
-            // class from the required services, and run it.
-            serviceProvider.GetRequiredService<ApplicationController>().Run();
+            // start the application by getting the IWalletService from
+            // the required services, and run it.
+            serviceProvider.GetRequiredService<IWalletService>().Run();
 
             return;
         }
