@@ -1,0 +1,6 @@
+name: ${PROJECT__NAME}
+
+services:
+  wallet-microservice:
+    image: ${PROJECT__NAME}:${PROJECT__VERSION}-latest
+    entrypoint: ['/app/Corent.Services.Wallet']

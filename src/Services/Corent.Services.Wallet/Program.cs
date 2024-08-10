@@ -8,12 +8,12 @@ using Corent.Logic.Services;
 
 namespace Corent.Services.Wallet
 {
-    internal class Program
+    public class Program
     {
         /// <summary>
         /// The main entry point for the Corrent Wallet microservice.
         /// </summary>
-        private static void Main()
+        static void Main(string[] args)
         {
             Console.Title = "Corent Wallet Microservice";
 

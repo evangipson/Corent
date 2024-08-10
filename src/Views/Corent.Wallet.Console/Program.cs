@@ -8,13 +8,13 @@ using Corent.Wallet.Console.Controllers;
 
 namespace Corent.Wallet.Console
 {
-    internal class Program
+    public class Program
     {
         /// <summary>
         /// The main entry point for the Corent Wallet
         /// console application.
         /// </summary>
-        private static void Main()
+        static void Main(string[] args)
         {
             System.Console.Title = "Corent Wallet Console Application";
 

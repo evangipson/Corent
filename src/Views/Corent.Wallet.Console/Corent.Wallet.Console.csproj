@@ -12,10 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Corent.Base\Corent.Base.csproj" />
-    <ProjectReference Include="..\Corent.Contracts\Corent.Contracts.csproj" />
-    <ProjectReference Include="..\Corent.Domain\Corent.Domain.csproj" />
-    <ProjectReference Include="..\Corent.Logic\Corent.Logic.csproj" />
+    <ProjectReference Include="..\..\Platform\Corent.Base\Corent.Base.csproj" />
+    <ProjectReference Include="..\..\Platform\Corent.Contracts\Corent.Contracts.csproj" />
+    <ProjectReference Include="..\..\Platform\Corent.Domain\Corent.Domain.csproj" />
+    <ProjectReference Include="..\..\Platform\Corent.Logic\Corent.Logic.csproj" />
   </ItemGroup>
 
 </Project>

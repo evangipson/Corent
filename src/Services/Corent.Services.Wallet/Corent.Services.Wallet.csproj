@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Platform\Corent.Base\Corent.Base.csproj" />
+    <ProjectReference Include="..\..\Platform\Corent.Contracts\Corent.Contracts.csproj" />
+    <ProjectReference Include="..\..\Platform\Corent.Domain\Corent.Domain.csproj" />
+    <ProjectReference Include="..\..\Platform\Corent.Logic\Corent.Logic.csproj" />
+  </ItemGroup>
+
+</Project>
