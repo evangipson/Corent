@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using RabbitMQ.Client;
 
 using Corent.Base.Extensions;
 using Corent.Contracts.Services;
@@ -18,17 +19,11 @@ namespace Corent.Services.Wallet
             Console.Title = "Corent Wallet Microservice";
 
             // setup our DI
-            var serviceCollection = new ServiceCollection().AddLogging(cfg => cfg.AddConsole());
-
-            // add Corent services using reflection
-            serviceCollection.AddServicesFromAssembly(Assembly.GetAssembly(typeof(WalletService)));
-
-            // instantiate depenedency injection concrete object
-            var serviceProvider = serviceCollection.BuildServiceProvider();
-
-            // start the application by getting the IWalletService from
-            // the required services, and run it.
-            serviceProvider.GetRequiredService<IWalletService>().Run();
+            new ServiceCollection().AddLogging(cfg => cfg.AddConsole())
+                .AddSingleton<IConnectionFactory, ConnectionFactory>()
+                .AddServicesFromAssembly(Assembly.GetAssembly(typeof(WalletService)))
+                .BuildServiceProvider()
+                .GetRequiredService<IWalletService>().Run();
 
             return;
         }

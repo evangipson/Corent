@@ -5,7 +5,7 @@ namespace Corent.Contracts.Services
     /// <summary>
     /// A service to interact with a <see cref="Wallet"/>.
     /// </summary>
-    public interface IWalletService : IMicroservice
+    public interface IWalletService : IMicroservice, IMessageService
     {
         /// <summary>
         /// Attempts a transfer between the <paramref name="sender"/>

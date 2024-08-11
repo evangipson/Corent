@@ -1,6 +1,22 @@
 name: ${PROJECT__NAME}
 
 services:
+  message-bus:
+    image: ${MESSAGE__IMAGE_NAME}:${MESSAGE__IMAGE_VERSION}
+    ports:
+      - ${MESSAGE__PORT}:5672
+      - ${MESSAGE__HTTP_PORT}:15672
+    healthcheck:
+      test: rabbitmq-diagnostics check_port_connectivity
+      interval: 1s
+      timeout: 3s
+      retries: 10
+
   wallet-microservice:
     image: ${PROJECT__NAME}:${PROJECT__VERSION}-latest
     entrypoint: ['/app/Corent.Services.Wallet']
+    depends_on:
+      message-bus:
+        condition: service_healthy
+    links:
+      - "message-bus"

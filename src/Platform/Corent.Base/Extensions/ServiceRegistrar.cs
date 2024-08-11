@@ -24,7 +24,7 @@ namespace Corent.Base.Extensions
         /// <param name="assembly">
         /// The assembly to add services from.
         /// </param>
-        public static void AddServicesFromAssembly(this IServiceCollection serviceCollection, Assembly? assembly)
+        public static IServiceCollection AddServicesFromAssembly(this IServiceCollection serviceCollection, Assembly? assembly)
         {
             if (assembly?.ExportedTypes == null)
             {
@@ -41,6 +41,8 @@ namespace Corent.Base.Extensions
                     serviceCollection.AddService(serviceAttribute.Lifetime, serviceAttribute.ServiceType, type);
                 }
             }
+
+            return serviceCollection;
         }
 
         /// <summary>

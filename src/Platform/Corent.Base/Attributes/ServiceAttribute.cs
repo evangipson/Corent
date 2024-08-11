@@ -8,13 +8,8 @@ namespace Corent.Base.Attributes
     /// with a defined attribute target and lifetime.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-    public class ServiceAttribute : Attribute
+    public class ServiceAttribute(Type serviceType) : Attribute
     {
-        public ServiceAttribute(Type serviceType)
-        {
-            ServiceType = serviceType;
-        }
-
         /// <summary>
         /// The <see cref="ServiceLifetime"/> of a service,
         /// defaults to <see cref="ServiceLifetime.Singleton"/>.
@@ -24,6 +19,6 @@ namespace Corent.Base.Attributes
         /// <summary>
         /// The type of a service.
         /// </summary>
-        public Type ServiceType { get; set; }
+        public Type ServiceType { get; set; } = serviceType;
     }
 }

@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using RabbitMQ.Client;
+using RabbitMQ.Client.Events;
 
 using Corent.Base.Attributes;
 using Corent.Contracts.Services;
@@ -8,13 +10,26 @@ namespace Corent.Logic.Services
 {
     /// <inheritdoc cref="IWalletService"/>
     [Service(typeof(IWalletService))]
-    public class WalletService(ILogger<WalletService> logger) : IWalletService
+    public class WalletService(
+        ILogger<WalletService> logger,
+        ISerializationService serializationService,
+        IConnectionFactory connectionFactory) : MessageService(logger, serializationService, connectionFactory), IWalletService
     {
         private readonly ILogger<WalletService> _logger = logger;
+
+        protected override string QueueName => "wallet-queue";
 
         public void Run()
         {
             _logger.LogInformation($"{nameof(Run)}: Wallet microservice started.");
+
+            ConsumeMessages();
+        }
+
+        public override void MessageReceivedCallback(object? model, BasicDeliverEventArgs eventArgs)
+        {
+            // TODO: Define what to do when receiving a message... probably invoke the methods below?
+            base.MessageReceivedCallback(model, eventArgs);
         }
 
         public Task<bool> TryTransfer(Wallet sender, Wallet receiver)
