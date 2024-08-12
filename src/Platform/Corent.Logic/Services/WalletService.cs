@@ -4,6 +4,7 @@ using RabbitMQ.Client.Events;
 
 using Corent.Base.Attributes;
 using Corent.Contracts.Services;
+using Corent.Domain.Constants;
 using Corent.Domain.Models;
 
 namespace Corent.Logic.Services
@@ -17,7 +18,7 @@ namespace Corent.Logic.Services
     {
         private readonly ILogger<WalletService> _logger = logger;
 
-        protected override string QueueName => "wallet-queue";
+        protected override string QueueName => MessagingConstants.WalletQueue;
 
         public void Run()
         {

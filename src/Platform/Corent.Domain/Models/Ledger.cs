@@ -6,8 +6,8 @@
     public class Ledger
     {
         /// <summary>
-        /// A unique collection of <see cref="Transaction"/> <see cref="Block">Blocks</see>.
+        /// The latest <see cref="Block"/> in the chain.
         /// </summary>
-        public ISet<Block> Blocks { get; set; } = new HashSet<Block>();
+        public Block? LatestBlock { get; set; }
     }
 }

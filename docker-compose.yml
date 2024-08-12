@@ -12,6 +12,15 @@ services:
       timeout: 3s
       retries: 10
 
+  ledger-microservice:
+    image: ${PROJECT__NAME}:${PROJECT__VERSION}-latest
+    entrypoint: ['/app/Corent.Services.Ledger']
+    depends_on:
+      message-bus:
+        condition: service_healthy
+    links:
+      - "message-bus"
+
   wallet-microservice:
     image: ${PROJECT__NAME}:${PROJECT__VERSION}-latest
     entrypoint: ['/app/Corent.Services.Wallet']
