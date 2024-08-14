@@ -29,3 +29,14 @@ services:
         condition: service_healthy
     links:
       - "message-bus"
+
+  network-microservice:
+    image: ${PROJECT__NAME}:${PROJECT__VERSION}-latest
+    entrypoint: ['/app/Corent.Services.Network']
+    ports:
+      - ${PROJECT__PORT}:${PROJECT__PORT}
+    depends_on:
+      message-bus:
+        condition: service_healthy
+    links:
+      - "message-bus"
