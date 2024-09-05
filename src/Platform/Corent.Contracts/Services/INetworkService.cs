@@ -9,12 +9,9 @@ namespace Corent.Contracts.Services
     public interface INetworkService : IMicroservice
     {
         /// <summary>
-        /// Listens for incoming <see cref="CorentNode"/> connections.
+        /// Connects to another <see cref="CorentNode"/>.
         /// </summary>
-        /// <returns>
-        /// A <see cref="Task"/> which listens for clients.
-        /// </returns>
-        void ListenForClientsAsync();
+        void ConnectToClient(string hostName, int port);
 
         /// <summary>
         /// Broadcasts a message to all clients of a <see cref="CorentNode"/>.

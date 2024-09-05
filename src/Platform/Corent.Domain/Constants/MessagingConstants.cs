@@ -16,5 +16,10 @@ namespace Corent.Domain.Constants
         /// The name of the <see cref="Ledger"/> queue.
         /// </summary>
         public const string LedgerQueue = "ledger-queue";
+
+        /// <summary>
+        /// The name of the Network queue.
+        /// </summary>
+        public const string NetworkQueue = "network-queue";
     }
 }

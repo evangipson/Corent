@@ -24,13 +24,13 @@ namespace Corent.Logic.Services
             }
         }
 
-        public ObjectType? Deserialize<ObjectType>(byte[] serializedBytes) where ObjectType : class
+        public ObjectType? Deserialize<ObjectType>(byte[] serializedBytes)
         {
             var serializer = new DataContractSerializer(typeof(ObjectType));
             try
             {
                 using MemoryStream stream = new(serializedBytes);
-                return serializer.ReadObject(stream) as ObjectType;
+                return (ObjectType)serializer.ReadObject(stream);
             }
             catch (Exception ex)
             {

@@ -6,6 +6,11 @@
     public static class Currency
     {
         /// <summary>
+        /// The name of the Corent currency.
+        /// </summary>
+        public const string Name = "Sitecoin";
+
+        /// <summary>
         /// The total amount of Corent.
         /// </summary>
         public const int Amount = 10000000;
@@ -18,6 +23,6 @@
         /// <summary>
         /// The abbreviated name of Corent.
         /// </summary>
-        public const string ShortName = "CRT";
+        public const string ShortName = "STC";
     }
 }

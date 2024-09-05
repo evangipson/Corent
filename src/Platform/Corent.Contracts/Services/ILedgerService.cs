@@ -22,16 +22,9 @@ namespace Corent.Contracts.Services
         /// <summary>
         /// Attempts to get the <see cref="Ledger"/>.
         /// </summary>
-        /// <param name="blockHash">
-        /// A hash used to confirm the <see cref="Ledger"/> is up to date.
-        /// </param>
-        /// <param name="ledger">
-        /// The discovered <see cref="Ledger"/>, defaults to <c>null</c>.
-        /// </param>
         /// <returns>
-        /// A <see cref="Task"/> which contains the success status of
-        /// the look up.
+        /// A <see cref="Task"/> which contains the ledger.
         /// </returns>
-        Task<bool> TryGetLedger(byte[] blockHash, out Ledger? ledger);
+        Task<Ledger> TryGetLedger();
     }
 }

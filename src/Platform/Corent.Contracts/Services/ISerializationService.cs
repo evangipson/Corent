@@ -34,6 +34,6 @@
         /// An object of <typeparamref name="ObjectType"/> if
         /// deserialization was successful, defaults to <c>null</c>.
         /// </returns>
-        ObjectType? Deserialize<ObjectType>(byte[] serializedBytes) where ObjectType : class;
+        ObjectType? Deserialize<ObjectType>(byte[] serializedBytes);
     }
 }

@@ -4,8 +4,8 @@ services:
   message-bus:
     image: ${MESSAGE__IMAGE_NAME}:${MESSAGE__IMAGE_VERSION}
     ports:
-      - ${MESSAGE__PORT}:5672
-      - ${MESSAGE__HTTP_PORT}:15672
+      - ${MESSAGE__PORT}:${MESSAGE__PORT}
+      - ${MESSAGE__HTTP_PORT}:${MESSAGE__HTTP_PORT}
     healthcheck:
       test: rabbitmq-diagnostics check_port_connectivity
       interval: 1s
@@ -30,11 +30,24 @@ services:
     links:
       - "message-bus"
 
-  network-microservice:
+  network-microservice-1:
     image: ${PROJECT__NAME}:${PROJECT__VERSION}-latest
     entrypoint: ['/app/Corent.Services.Network']
     ports:
       - ${PROJECT__PORT}:${PROJECT__PORT}
+    depends_on:
+      message-bus:
+        condition: service_healthy
+    links:
+      - "message-bus"
+
+  network-microservice-2:
+    image: ${PROJECT__NAME}:${PROJECT__VERSION}-latest
+    entrypoint: ['/app/Corent.Services.Network']
+    ports:
+      - ${PROJECT__PORT_END}:${PROJECT__PORT_END}
+    volumes:
+      - ./Corent.Services.Network/appsettings.duplicate.json:/app/appsettings.json
     depends_on:
       message-bus:
         condition: service_healthy
